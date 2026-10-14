@@ -1,0 +1,155 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+
+  "width": 520,
+  "height": 420,
+
+  "data": {
+    "url": "data/nsw_scenic_lookout_walks_case_study.csv",
+
+    "format": {
+      "type": "csv",
+      "parse": {
+        "distance_km": "number",
+        "time_mid_min": "number",
+        "grade": "number"
+      }
+    }
+  },
+
+  "transform": [
+    {
+      "calculate": "datum.distance_km / 9",
+      "as": "distance_score"
+    },
+    {
+      "calculate": "datum.time_mid_min / 390",
+      "as": "time_score"
+    },
+    {
+      "calculate": "datum.grade / 5",
+      "as": "grade_score"
+    },
+
+    {
+      "fold": [
+        "distance_score",
+        "time_score",
+        "grade_score"
+      ],
+      "as": [
+        "metric",
+        "score"
+      ]
+    },
+
+    {
+      "calculate": "datum.metric == 'distance_score' ? 'Distance' : datum.metric == 'time_score' ? 'Walking Time' : 'Track Grade'",
+      "as": "metric_name"
+    }
+  ],
+
+  "mark": {
+    "type": "rect",
+    "cornerRadius": 3,
+    "stroke": "#FFFFFF",
+    "strokeWidth": 1
+  },
+
+  "encoding": {
+
+    "x": {
+      "field": "metric_name",
+      "type": "nominal",
+      "title": null,
+      "sort": [
+        "Distance",
+        "Walking Time",
+        "Track Grade"
+      ],
+      "axis": {
+        "labelAngle": 0,
+        "labelFontSize": 12
+      }
+    },
+
+    "y": {
+      "field": "name",
+      "type": "nominal",
+      "title": null,
+
+      "sort": {
+        "field": "grade",
+        "order": "descending"
+      },
+
+      "axis": {
+        "labelLimit": 230,
+        "labelFontSize": 11
+      }
+    },
+
+    "color": {
+      "field": "score",
+      "type": "quantitative",
+
+      "title": "Relative Effort",
+
+      "scale": {
+        "domain": [
+          0,
+          1
+        ],
+        "scheme": "yelloworangered"
+      },
+
+      "legend": {
+        "orient": "right",
+        "gradientLength": 180
+      }
+    },
+
+    "tooltip": [
+      {
+        "field": "name",
+        "type": "nominal",
+        "title": "Walk"
+      },
+
+      {
+        "field": "distance_km",
+        "type": "quantitative",
+        "title": "Distance (km)"
+      },
+
+      {
+        "field": "time_mid_min",
+        "type": "quantitative",
+        "title": "Typical Time (min)"
+      },
+
+      {
+        "field": "grade",
+        "type": "ordinal",
+        "title": "Grade"
+      }
+    ]
+  },
+
+  "config": {
+
+    "view": {
+      "stroke": null
+    },
+
+    "axis": {
+      "domain": false,
+      "ticks": false
+    },
+
+    "legend": {
+      "labelFontSize": 11,
+      "titleFontSize": 12
+    }
+  }
+}

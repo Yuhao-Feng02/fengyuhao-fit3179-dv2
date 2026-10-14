@@ -1,0 +1,167 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+
+  "width": 720,
+  "height": 400,
+
+  "data": {
+    "url": "data/state_scenic_tourism_summary.csv",
+
+    "format": {
+      "type": "csv",
+      "parse": {
+        "lookouts": "number",
+        "regional_expenditure_m_aud": "number",
+        "visitor_nights_000": "number"
+      }
+    }
+  },
+
+  "layer": [
+    {
+      "mark": {
+        "type": "circle",
+        "opacity": 0.82,
+        "stroke": "#FFFFFF",
+        "strokeWidth": 1.2
+      },
+
+      "encoding": {
+        "x": {
+          "field": "lookouts",
+          "type": "quantitative",
+          "title": "Number of Recorded Lookouts",
+          "scale": {
+            "zero": true
+          }
+        },
+
+        "y": {
+          "field": "regional_expenditure_m_aud",
+          "type": "quantitative",
+          "title": "Tourism Expenditure ($M)",
+          "scale": {
+            "zero": true
+          }
+        },
+
+        "size": {
+          "field": "visitor_nights_000",
+          "type": "quantitative",
+          "title": "Visitor Nights ('000)",
+          "scale": {
+            "range": [120, 1600]
+          }
+        },
+
+        "color": {
+          "field": "regional_expenditure_m_aud",
+          "type": "quantitative",
+          "title": "Tourism Expenditure ($M)",
+          "scale": {
+            "scheme": "orangered"
+          }
+        },
+
+        "tooltip": [
+          {
+            "field": "state_name",
+            "type": "nominal",
+            "title": "State"
+          },
+          {
+            "field": "lookouts",
+            "type": "quantitative",
+            "title": "Recorded Lookouts"
+          },
+          {
+            "field": "regional_expenditure_m_aud",
+            "type": "quantitative",
+            "title": "Tourism Expenditure ($M)",
+            "format": ",.0f"
+          },
+          {
+            "field": "visitor_nights_000",
+            "type": "quantitative",
+            "title": "Visitor Nights ('000)",
+            "format": ",.0f"
+          }
+        ]
+      }
+    },
+
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 10,
+        "dy": -8,
+        "fontSize": 12,
+        "fontWeight": "bold",
+        "color": "#33413D"
+      },
+
+      "encoding": {
+        "x": {
+          "field": "lookouts",
+          "type": "quantitative"
+        },
+
+        "y": {
+          "field": "regional_expenditure_m_aud",
+          "type": "quantitative"
+        },
+
+        "text": {
+          "field": "state",
+          "type": "nominal"
+        }
+      }
+    },
+
+    {
+      "transform": [
+        {
+          "regression": "regional_expenditure_m_aud",
+          "on": "lookouts"
+        }
+      ],
+
+      "mark": {
+        "type": "line",
+        "color": "#B75A45",
+        "strokeWidth": 2,
+        "strokeDash": [6, 4]
+      },
+
+      "encoding": {
+        "x": {
+          "field": "lookouts",
+          "type": "quantitative"
+        },
+
+        "y": {
+          "field": "regional_expenditure_m_aud",
+          "type": "quantitative"
+        }
+      }
+    }
+  ],
+
+  "config": {
+    "view": {
+      "stroke": null
+    },
+
+    "axis": {
+      "labelFontSize": 12,
+      "titleFontSize": 13,
+      "gridColor": "#E8E4DC"
+    },
+
+    "legend": {
+      "labelFontSize": 11,
+      "titleFontSize": 12
+    }
+  }
+}

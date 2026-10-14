@@ -1,0 +1,120 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+
+  "width": 700,
+  "height": 380,
+
+  "data": {
+    "url": "data/nsw_scenic_lookout_walks_case_study.csv",
+
+    "format": {
+      "type": "csv",
+
+      "parse": {
+        "distance_km": "number",
+        "time_mid_min": "number",
+        "grade": "number"
+      }
+    }
+  },
+
+  "mark": {
+    "type": "circle",
+    "size": 150,
+    "opacity": 0.8,
+    "stroke": "#FFFFFF",
+    "strokeWidth": 1
+  },
+
+  "encoding": {
+
+    "x": {
+      "field": "distance_km",
+      "type": "quantitative",
+      "title": "Walking Distance (km)",
+
+      "scale": {
+        "zero": true
+      }
+    },
+
+    "y": {
+      "field": "time_mid_min",
+      "type": "quantitative",
+      "title": "Typical Walking Time (minutes)",
+
+      "scale": {
+        "zero": true
+      }
+    },
+
+    "color": {
+      "field": "grade",
+      "type": "ordinal",
+      "title": "Track Grade",
+
+      "scale": {
+        "domain": [1, 2, 3, 4, 5],
+        "scheme": "viridis"
+      }
+    },
+
+    "tooltip": [
+
+      {
+        "field": "name",
+        "type": "nominal",
+        "title": "Walk"
+      },
+
+      {
+        "field": "park",
+        "type": "nominal",
+        "title": "Park"
+      },
+
+      {
+        "field": "distance_km",
+        "type": "quantitative",
+        "title": "Distance (km)"
+      },
+
+      {
+        "field": "time_min",
+        "type": "quantitative",
+        "title": "Minimum Time"
+      },
+
+      {
+        "field": "time_max",
+        "type": "quantitative",
+        "title": "Maximum Time"
+      },
+
+      {
+        "field": "grade",
+        "type": "ordinal",
+        "title": "Grade"
+      }
+
+    ]
+  },
+
+  "config": {
+
+    "view": {
+      "stroke": null
+    },
+
+    "axis": {
+      "labelFontSize": 12,
+      "titleFontSize": 13,
+      "gridColor": "#E8E4DC"
+    },
+
+    "legend": {
+      "labelFontSize": 11,
+      "titleFontSize": 12
+    }
+  }
+}

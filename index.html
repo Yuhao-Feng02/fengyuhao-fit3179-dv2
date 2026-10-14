@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  >
+
+  <title>
+    Australia's Scenic Lookouts and Walking Destinations
+  </title>
+
+  <link
+    rel="stylesheet"
+    href="css/style.css"
+  >
+
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+</head>
+
+
+<body>
+
+
+  <!-- HERO -->
+
+  <header class="hero">
+
+    <div class="eyebrow">
+      FIT3179 · Data Visualisation 2
+    </div>
+
+    <h1>
+      Exploring Australia’s Scenic Lookouts and Walking Destinations
+    </h1>
+
+    <p>
+      Where are Australia’s scenic views, how accessible are scenic walks,
+      and how do natural attractions align with domestic tourism?
+    </p>
+
+  </header>
+
+
+
+  <main>
+
+
+    <!-- ==================================================
+         SECTION 1
+    =================================================== -->
+
+    <section class="section">
+
+      <div class="section-kicker">
+        Section 1
+      </div>
+
+      <h2>
+        Where are Australia’s scenic views?
+      </h2>
+
+      <p class="section-intro">
+        Australia’s recorded scenic lookouts are unevenly distributed.
+        This section explores where lookout locations are recorded across
+        the country, how their numbers differ between states and territories,
+        and where scenic viewpoints are concentrated.
+      </p>
+
+
+      <!-- CHART 1 -->
+
+      <article class="chart-card">
+
+        <h3>
+          Where are Australia’s scenic lookouts?
+        </h3>
+
+        <p class="chart-note">
+          Each point represents a recorded lookout.
+          Hover over a point to see its name and state.
+        </p>
+
+        <div id="chart1"></div>
+
+      </article>
+
+
+      <!-- CHART 2 -->
+
+      <article class="chart-card">
+
+        <h3>
+          Which states have the most recorded lookouts?
+        </h3>
+
+        <p class="chart-note">
+          Recorded scenic lookouts are unevenly distributed
+          across Australian states and territories.
+        </p>
+
+        <div id="chart2"></div>
+
+        <div class="insight">
+          <strong>Key finding:</strong>
+          New South Wales has 401 recorded lookouts—more than three
+          times Queensland’s 122, the second-highest count.
+        </div>
+
+      </article>
+
+
+      <!-- CHART 3 -->
+
+      <article class="chart-card">
+
+        <h3>
+          Where are scenic lookouts most concentrated?
+        </h3>
+
+        <p class="chart-note">
+          Nearby lookout locations are grouped into geographic areas.
+          Larger and darker circles indicate areas with more
+          recorded scenic lookouts.
+        </p>
+
+        <div id="chart3"></div>
+
+      </article>
+
+    </section>
+
+
+
+    <!-- ==================================================
+         SECTION 2
+    =================================================== -->
+
+    <section class="section">
+
+      <div class="section-kicker">
+        Section 2
+      </div>
+
+      <h2>
+        How accessible are scenic walks?
+      </h2>
+
+      <p class="section-intro">
+        A closer look at scenic lookout walks in New South Wales
+        shows that reaching a great view can range from a short,
+        easy walk to a demanding multi-hour hike.
+      </p>
+
+
+      <!-- CHART 4 -->
+
+      <article class="chart-card">
+
+        <h3>
+          How does walking time change with track difficulty?
+        </h3>
+
+        <p class="chart-note">
+          Box plots compare the distribution of typical walking time
+          across track grades. Higher grades generally represent more
+          demanding walking conditions.
+        </p>
+
+        <div id="chart4"></div>
+
+      </article>
+
+
+      <!-- CHART 5 -->
+
+      <article class="chart-card">
+
+        <h3>
+          Do longer walks always take more time?
+        </h3>
+
+        <p class="chart-note">
+          Each point represents a scenic lookout walk.
+          Distance and typical walking time reveal how route length
+          and difficulty interact.
+        </p>
+
+        <div id="chart5"></div>
+
+        <div class="insight">
+          <strong>Key finding:</strong>
+          The NSW case-study sample ranges from short Grade 1 walks
+          of around 0.5 km to a 9 km Grade 5 route requiring several hours.
+        </div>
+
+      </article>
+
+
+      <!-- CHART 6 -->
+
+      <article class="chart-card">
+
+        <h3>
+          Which scenic walks demand the most effort?
+        </h3>
+
+        <p class="chart-note">
+          Distance, walking time and track grade are normalised
+          to a common scale. Darker cells indicate relatively greater
+          effort within this NSW case-study sample.
+        </p>
+
+        <div id="chart6"></div>
+
+      </article>
+
+    </section>
+
+
+
+    <!-- ==================================================
+         SECTION 3
+    =================================================== -->
+
+    <section class="section">
+
+      <div class="section-kicker">
+        Section 3
+      </div>
+
+      <h2>
+        Where is domestic tourism strongest?
+      </h2>
+
+      <p class="section-intro">
+        Domestic tourism activity is unevenly distributed across Australia.
+        Trip volumes, visitor nights and expenditure reveal different
+        dimensions of tourism activity between states and territories.
+      </p>
+
+
+      <!-- CHART 7 -->
+
+      <article class="chart-card">
+
+        <h3>
+          Which states receive the most domestic trips?
+        </h3>
+
+        <p class="chart-note">
+          Circle size represents total domestic trips during the
+          June Quarter 2026. Larger circles indicate higher trip volumes.
+        </p>
+
+        <div id="chart7"></div>
+
+      </article>
+
+
+      <!-- CHART 8 -->
+
+      <article class="chart-card">
+
+        <h3>
+          Where is domestic tourism spending highest?
+        </h3>
+
+        <p class="chart-note">
+          Darker states represent higher regional tourism expenditure
+          during the June Quarter 2026.
+        </p>
+
+        <div id="chart8"></div>
+
+        <div class="insight">
+          <strong>Key finding:</strong>
+          New South Wales records the highest regional tourism expenditure
+          in the June Quarter 2026 at about $11.76 billion, followed by
+          Victoria and Queensland.
+        </div>
+
+      </article>
+
+
+      <!-- CHART 9 -->
+
+      <article class="chart-card">
+
+        <h3>
+          How do trips, visitor nights and spending compare?
+        </h3>
+
+        <p class="chart-note">
+          Each indicator is normalised relative to the highest-performing
+          state. Darker cells indicate a higher relative level for that
+          tourism measure.
+        </p>
+
+        <div id="chart9"></div>
+
+      </article>
+
+    </section>
+
+
+
+    <!-- ==================================================
+         SECTION 4
+    =================================================== -->
+
+    <section class="section">
+
+      <div class="section-kicker">
+        Section 4
+      </div>
+
+      <h2>
+        Do scenic destinations align with tourism activity?
+      </h2>
+
+      <p class="section-intro">
+        Scenic attractions form one part of Australia’s wider tourism
+        landscape. Comparing recorded lookout locations with tourism
+        activity can reveal whether the two patterns tend to occur together.
+        These relationships show association rather than direct causation.
+      </p>
+
+
+      <!-- CHART 10 -->
+
+      <article class="chart-card">
+
+        <h3>
+          Do states with more recorded lookouts receive more domestic trips?
+        </h3>
+
+        <p class="chart-note">
+          Each point represents a state or territory.
+          The dashed trend line summarises the overall association
+          between recorded scenic lookouts and domestic tourism activity.
+        </p>
+
+        <div id="chart10"></div>
+
+        <div class="insight">
+          <strong>Key finding:</strong>
+          The overall relationship is positive, but it is not one-to-one.
+          Victoria records fewer lookouts than Queensland while receiving
+          substantially more domestic trips.
+        </div>
+
+      </article>
+
+
+      <!-- CHART 11 -->
+
+      <article class="chart-card">
+
+        <h3>
+          Do more scenic lookouts align with higher tourism spending?
+        </h3>
+
+        <p class="chart-note">
+          Bubble position compares recorded lookout numbers with tourism
+          expenditure, while bubble size represents visitor nights.
+        </p>
+
+        <div id="chart11"></div>
+
+      </article>
+
+
+      <!-- CHART 12 -->
+
+      <article class="chart-card">
+
+        <h3>
+          Which states combine strong scenery and tourism indicators?
+        </h3>
+
+        <p class="chart-note">
+          Scenic and tourism indicators are normalised to a common scale.
+          Darker cells indicate a higher relative level within Australia.
+        </p>
+
+        <div id="chart12"></div>
+
+      </article>
+
+    </section>
+
+
+
+    <!-- ==================================================
+         CONCLUSION
+    =================================================== -->
+
+    <section class="section">
+
+      <div class="section-kicker">
+        Conclusion
+      </div>
+
+      <h2>
+        Scenic landscapes form part of Australia’s wider tourism story
+      </h2>
+
+      <p class="section-intro">
+        Recorded scenic lookouts are concentrated particularly around
+        Australia’s eastern and southern regions. Scenic walking experiences
+        also vary substantially in accessibility, ranging from short Grade 1
+        walks to demanding Grade 5 routes. Several states with higher recorded
+        lookout counts also show strong domestic tourism activity, although
+        these patterns indicate association rather than direct causation.
+      </p>
+
+    </section>
+
+
+  </main>
+
+
+
+  <!-- ==================================================
+       FOOTER
+  =================================================== -->
+
+<footer>
+
+  <p class="footer-title">
+    About this visualisation
+  </p>
+
+
+  <p>
+    <strong>Author:</strong>
+    Feng Yuhao
+  </p>
+
+
+  <p>
+    <strong>Unit:</strong>
+    FIT3179 Data Visualisation 2
+  </p>
+
+
+  <p>
+    <strong>Created:</strong>
+    October 2026
+  </p>
+
+
+  <br>
+
+
+  <p class="footer-title">
+  Data sources
+</p>
+
+<p>
+  <strong>Geoscience Australia</strong><br>
+  Composite Gazetteer of Australia — source of recorded place-name
+  locations. Lookout records used in this visualisation were derived
+  by filtering features classified as LOOKOUT.<br>
+  <a href="https://services.ga.gov.au/gis/rest/services/Composite_Gazetteer_of_Australia/MapServer"
+     target="_blank">
+    View official data source
+  </a>
+</p>
+
+<p>
+  <strong>Tourism Research Australia</strong><br>
+  Domestic Tourism Statistics (DoTS), June Quarter 2026 —
+  state and territory trips, visitor nights and expenditure.<br>
+  <a href="https://www.tra.gov.au/en/tourism-statistics/domestic-tourism-statistics-results"
+     target="_blank">
+    View official data and XLSX tables
+  </a>
+</p>
+
+<p>
+  <strong>NSW National Parks and Wildlife Service</strong><br>
+  Individual official walking-track pages were used to compile
+  the NSW case-study dataset. Track difficulty follows the
+  Australian Walking Track Grading System.<br>
+  <a href="https://www.nationalparks.nsw.gov.au/safety/bushwalking-safety/australian-walking-track-grading-system"
+     target="_blank">
+    View official grading system
+  </a>
+</p>
+
+
+  <br>
+
+
+  <p class="footer-title">
+    Data limitations
+  </p>
+
+
+  <p>
+    Recorded lookout locations represent gazetted place-name
+    information rather than the complete number of scenic viewpoints
+    available to visitors. Walking-track analysis is presented as a
+    NSW case study and should not be interpreted as a complete national
+    comparison of all Australian walking tracks.
+  </p>
+
+
+  <br>
+
+
+  <p class="footer-title">
+    AI acknowledgement
+  </p>
+
+
+  <p>
+    No content generated by AI technologies has been used in this assessment.
+  </p>
+
+
+</footer>
+
+
+  <!-- ==================================================
+       VEGA-LITE EMBEDDING
+  =================================================== -->
+
+  <script>
+
+    vegaEmbed('#chart1', 'js/chart1_lookout_map.json', {
+      actions: false,
+      renderer: 'svg'
+    }).catch(console.error);
+
+    vegaEmbed('#chart2', 'js/chart2_lookouts_by_state.json', {
+      actions: false,
+      renderer: 'svg'
+    }).catch(console.error);
+
+    vegaEmbed('#chart3', 'js/chart3_lookout_concentration.json', {
+      actions: false,
+      renderer: 'svg'
+    }).catch(console.error);
+
+    vegaEmbed('#chart4', 'js/chart4_walking_grade_distribution.json', {
+      actions: false,
+      renderer: 'svg'
+    }).catch(console.error);
+
+    vegaEmbed('#chart5', 'js/chart5_distance_time.json', {
+      actions: false,
+      renderer: 'svg'
+    }).catch(console.error);
+
+    vegaEmbed('#chart6', 'js/chart6_accessibility_heatmap.json', {
+      actions: false,
+      renderer: 'svg'
+    }).catch(console.error);
+
+    vegaEmbed('#chart7', 'js/chart7_domestic_tourism_map.json', {
+      actions: false,
+      renderer: 'svg'
+    }).catch(console.error);
+
+    vegaEmbed('#chart8', 'js/chart8_tourism_expenditure_map.json', {
+      actions: false,
+      renderer: 'svg'
+    }).catch(console.error);
+
+    vegaEmbed('#chart9', 'js/chart9_tourism_heatmap.json', {
+      actions: false,
+      renderer: 'svg'
+    }).catch(console.error);
+
+    vegaEmbed('#chart10', 'js/chart10_lookouts_vs_trips.json', {
+      actions: false,
+      renderer: 'svg'
+    }).catch(console.error);
+
+    vegaEmbed('#chart11', 'js/chart11_lookouts_vs_expenditure.json', {
+      actions: false,
+      renderer: 'svg'
+    }).catch(console.error);
+
+    vegaEmbed('#chart12', 'js/chart12_state_summary_heatmap.json', {
+      actions: false,
+      renderer: 'svg'
+    }).catch(console.error);
+
+  </script>
+
+</body>
+
+</html>

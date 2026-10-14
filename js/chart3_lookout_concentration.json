@@ -1,0 +1,164 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+
+  "width": 850,
+  "height": 500,
+
+  "projection": {
+    "type": "mercator",
+    "center": [134, -28],
+    "scale": 600
+  },
+
+  "layer": [
+
+    {
+      "data": {
+        "url": "https://cdn.jsdelivr.net/npm/vega-datasets@2.9.0/data/world-110m.json",
+        "format": {
+          "type": "topojson",
+          "feature": "countries"
+        }
+      },
+
+      "transform": [
+        {
+          "filter": "datum.id == 36"
+        }
+      ],
+
+      "mark": {
+        "type": "geoshape",
+        "fill": "#F3F0E8",
+        "stroke": "#777777",
+        "strokeWidth": 1
+      }
+    },
+
+    {
+      "data": {
+        "url": "data/scenic_walks_lookouts.csv",
+
+        "format": {
+          "type": "csv",
+          "parse": {
+            "longitude": "number",
+            "latitude": "number"
+          }
+        }
+      },
+
+      "transform": [
+
+        {
+          "filter": "datum.type == 'LOOKOUT'"
+        },
+
+        {
+          "filter": "datum.state != 'AAD'"
+        },
+
+        {
+          "calculate": "floor(datum.longitude / 2) * 2",
+          "as": "longitude_bin"
+        },
+
+        {
+          "calculate": "floor(datum.latitude / 2) * 2",
+          "as": "latitude_bin"
+        },
+
+        {
+          "aggregate": [
+            {
+              "op": "count",
+              "as": "lookout_count"
+            }
+          ],
+
+          "groupby": [
+            "longitude_bin",
+            "latitude_bin"
+          ]
+        },
+
+        {
+          "calculate": "datum.longitude_bin + 1",
+          "as": "longitude_mid"
+        },
+
+        {
+          "calculate": "datum.latitude_bin + 1",
+          "as": "latitude_mid"
+        }
+
+      ],
+
+      "mark": {
+        "type": "circle",
+        "opacity": 0.75,
+        "stroke": "#FFFFFF",
+        "strokeWidth": 0.7
+      },
+
+      "encoding": {
+
+        "longitude": {
+          "field": "longitude_mid",
+          "type": "quantitative"
+        },
+
+        "latitude": {
+          "field": "latitude_mid",
+          "type": "quantitative"
+        },
+
+        "size": {
+          "field": "lookout_count",
+          "type": "quantitative",
+          "title": "Lookouts in Area",
+
+          "scale": {
+            "range": [
+              40,
+              1200
+            ]
+          }
+        },
+
+        "color": {
+          "field": "lookout_count",
+          "type": "quantitative",
+          "title": "Lookouts in Area",
+
+          "scale": {
+            "scheme": "orangered"
+          }
+        },
+
+        "tooltip": [
+          {
+            "field": "lookout_count",
+            "type": "quantitative",
+            "title": "Recorded Lookouts"
+          }
+        ]
+      }
+    }
+
+  ],
+
+  "config": {
+
+    "background": "#FFFFFF",
+
+    "view": {
+      "stroke": null
+    },
+
+    "legend": {
+      "labelFontSize": 11,
+      "titleFontSize": 12
+    }
+  }
+}

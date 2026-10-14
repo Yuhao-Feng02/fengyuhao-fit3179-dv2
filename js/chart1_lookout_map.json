@@ -1,0 +1,85 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Recorded scenic lookout locations across Australia.",
+  "width": "container",
+  "height": 520,
+  "projection": {
+    "type": "mercator",
+    "center": [
+      134,
+      -28
+    ],
+    "scale": 600
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "https://cdn.jsdelivr.net/npm/vega-datasets@2.9.0/data/world-110m.json",
+        "format": {
+          "type": "topojson",
+          "feature": "countries"
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.id == 36"
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "fill": "#F3F0E8",
+        "stroke": "#6B6B6B",
+        "strokeWidth": 1
+      }
+    },
+    {
+      "data": {
+        "url": "data/scenic_walks_lookouts.csv"
+      },
+      "transform": [
+        {
+          "filter": "datum.type == 'LOOKOUT'"
+        },
+        {
+          "filter": "datum.state != 'AAD'"
+        }
+      ],
+      "mark": {
+        "type": "circle",
+        "size": 26,
+        "opacity": 0.62,
+        "color": "#C75146",
+        "stroke": "#FFFFFF",
+        "strokeWidth": 0.35
+      },
+      "encoding": {
+        "longitude": {
+          "field": "longitude",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "latitude",
+          "type": "quantitative"
+        },
+        "tooltip": [
+          {
+            "field": "name",
+            "type": "nominal",
+            "title": "Lookout"
+          },
+          {
+            "field": "state",
+            "type": "nominal",
+            "title": "State"
+          }
+        ]
+      }
+    }
+  ],
+  "config": {
+    "background": "#FFFFFF",
+    "view": {
+      "stroke": null
+    }
+  }
+}

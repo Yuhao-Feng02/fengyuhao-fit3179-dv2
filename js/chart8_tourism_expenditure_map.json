@@ -1,0 +1,100 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+
+  "width": 850,
+  "height": 500,
+
+  "data": {
+    "url": "https://raw.githubusercontent.com/rowanhogan/australian-states/master/states.geojson",
+    "format": {
+      "type": "json",
+      "property": "features"
+    }
+  },
+
+  "transform": [
+    {
+      "lookup": "properties.STATE_NAME",
+      "from": {
+        "data": {
+          "url": "data/australia_tourism_2026.csv",
+          "format": {
+            "type": "csv",
+            "parse": {
+              "regional_expenditure_m_aud": "number",
+              "total_domestic_trips_000": "number",
+              "visitor_nights_000": "number"
+            }
+          }
+        },
+        "key": "state_name",
+        "fields": [
+          "regional_expenditure_m_aud",
+          "total_domestic_trips_000",
+          "visitor_nights_000"
+        ]
+      }
+    }
+  ],
+
+  "projection": {
+    "type": "mercator"
+  },
+
+  "mark": {
+    "type": "geoshape",
+    "stroke": "#FFFFFF",
+    "strokeWidth": 1.2
+  },
+
+  "encoding": {
+
+    "color": {
+      "field": "regional_expenditure_m_aud",
+      "type": "quantitative",
+      "title": "Tourism Expenditure ($M)",
+      "scale": {
+        "scheme": "tealblues"
+      }
+    },
+
+    "tooltip": [
+      {
+        "field": "properties.STATE_NAME",
+        "type": "nominal",
+        "title": "State"
+      },
+      {
+        "field": "regional_expenditure_m_aud",
+        "type": "quantitative",
+        "title": "Expenditure ($M)",
+        "format": ",.0f"
+      },
+      {
+        "field": "total_domestic_trips_000",
+        "type": "quantitative",
+        "title": "Domestic Trips ('000)",
+        "format": ",.0f"
+      },
+      {
+        "field": "visitor_nights_000",
+        "type": "quantitative",
+        "title": "Visitor Nights ('000)",
+        "format": ",.0f"
+      }
+    ]
+  },
+
+  "config": {
+    "background": "#FFFFFF",
+
+    "view": {
+      "stroke": null
+    },
+
+    "legend": {
+      "labelFontSize": 11,
+      "titleFontSize": 12
+    }
+  }
+}

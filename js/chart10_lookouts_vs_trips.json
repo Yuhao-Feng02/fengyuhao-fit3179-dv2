@@ -1,0 +1,152 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+
+  "width": 720,
+  "height": 400,
+
+  "data": {
+    "url": "data/state_scenic_tourism_summary.csv",
+
+    "format": {
+      "type": "csv",
+      "parse": {
+        "lookouts": "number",
+        "total_domestic_trips_000": "number",
+        "regional_expenditure_m_aud": "number"
+      }
+    }
+  },
+
+  "layer": [
+
+    {
+      "mark": {
+        "type": "circle",
+        "size": 220,
+        "opacity": 0.85,
+        "color": "#4F7C91",
+        "stroke": "#FFFFFF",
+        "strokeWidth": 1.2
+      },
+
+      "encoding": {
+
+        "x": {
+          "field": "lookouts",
+          "type": "quantitative",
+          "title": "Number of Recorded Lookouts",
+          "scale": {
+            "zero": true
+          }
+        },
+
+        "y": {
+          "field": "total_domestic_trips_000",
+          "type": "quantitative",
+          "title": "Domestic Trips ('000)",
+          "scale": {
+            "zero": true
+          }
+        },
+
+        "tooltip": [
+          {
+            "field": "state_name",
+            "type": "nominal",
+            "title": "State"
+          },
+          {
+            "field": "lookouts",
+            "type": "quantitative",
+            "title": "Recorded Lookouts"
+          },
+          {
+            "field": "total_domestic_trips_000",
+            "type": "quantitative",
+            "title": "Domestic Trips ('000)",
+            "format": ",.0f"
+          },
+          {
+            "field": "regional_expenditure_m_aud",
+            "type": "quantitative",
+            "title": "Tourism Spending ($M)",
+            "format": ",.0f"
+          }
+        ]
+      }
+    },
+
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 9,
+        "dy": -8,
+        "fontSize": 12,
+        "fontWeight": "bold",
+        "color": "#33413D"
+      },
+
+      "encoding": {
+
+        "x": {
+          "field": "lookouts",
+          "type": "quantitative"
+        },
+
+        "y": {
+          "field": "total_domestic_trips_000",
+          "type": "quantitative"
+        },
+
+        "text": {
+          "field": "state",
+          "type": "nominal"
+        }
+      }
+    },
+
+    {
+      "transform": [
+        {
+          "regression": "total_domestic_trips_000",
+          "on": "lookouts"
+        }
+      ],
+
+      "mark": {
+        "type": "line",
+        "color": "#C56A54",
+        "strokeWidth": 2,
+        "strokeDash": [6, 4]
+      },
+
+      "encoding": {
+
+        "x": {
+          "field": "lookouts",
+          "type": "quantitative"
+        },
+
+        "y": {
+          "field": "total_domestic_trips_000",
+          "type": "quantitative"
+        }
+      }
+    }
+
+  ],
+
+  "config": {
+
+    "view": {
+      "stroke": null
+    },
+
+    "axis": {
+      "labelFontSize": 12,
+      "titleFontSize": 13,
+      "gridColor": "#E8E4DC"
+    }
+  }
+}

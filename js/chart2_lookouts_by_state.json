@@ -1,0 +1,63 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+
+  "width": 700,
+  "height": 320,
+
+  "data": {
+    "url": "data/scenic_walks_lookouts.csv"
+  },
+
+  "transform": [
+    {
+      "filter": "datum.type == 'LOOKOUT'"
+    },
+    {
+      "filter": "datum.state != 'AAD'"
+    }
+  ],
+
+  "mark": {
+    "type": "bar",
+    "color": "#3F6E63"
+  },
+
+  "encoding": {
+    "y": {
+      "field": "state",
+      "type": "nominal",
+      "title": null,
+      "sort": "-x"
+    },
+
+    "x": {
+      "aggregate": "count",
+      "type": "quantitative",
+      "title": "Number of Recorded Lookouts"
+    },
+
+    "tooltip": [
+      {
+        "field": "state",
+        "type": "nominal",
+        "title": "State"
+      },
+      {
+        "aggregate": "count",
+        "type": "quantitative",
+        "title": "Recorded Lookouts"
+      }
+    ]
+  },
+
+  "config": {
+    "view": {
+      "stroke": null
+    },
+
+    "axis": {
+      "labelFontSize": 12,
+      "titleFontSize": 13
+    }
+  }
+}

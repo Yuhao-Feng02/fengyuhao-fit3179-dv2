@@ -1,0 +1,156 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+
+  "width": 850,
+  "height": 500,
+
+  "projection": {
+    "type": "mercator",
+    "center": [134, -28],
+    "scale": 600
+  },
+
+  "layer": [
+
+    {
+      "data": {
+        "url": "https://cdn.jsdelivr.net/npm/vega-datasets@2.9.0/data/world-110m.json",
+        "format": {
+          "type": "topojson",
+          "feature": "countries"
+        }
+      },
+
+      "transform": [
+        {
+          "filter": "datum.id == 36"
+        }
+      ],
+
+      "mark": {
+        "type": "geoshape",
+        "fill": "#F3F0E8",
+        "stroke": "#777777",
+        "strokeWidth": 1
+      }
+    },
+
+    {
+      "data": {
+        "values": [
+          {
+            "state": "NSW",
+            "longitude": 147,
+            "latitude": -32,
+            "trips": 31619.178
+          },
+          {
+            "state": "VIC",
+            "longitude": 145,
+            "latitude": -37,
+            "trips": 29767.274
+          },
+          {
+            "state": "QLD",
+            "longitude": 145,
+            "latitude": -23,
+            "trips": 21466.866
+          },
+          {
+            "state": "SA",
+            "longitude": 135,
+            "latitude": -30,
+            "trips": 6116.88
+          },
+          {
+            "state": "WA",
+            "longitude": 121,
+            "latitude": -25,
+            "trips": 10457.814
+          },
+          {
+            "state": "TAS",
+            "longitude": 147,
+            "latitude": -42,
+            "trips": 1863.803
+          },
+          {
+            "state": "NT",
+            "longitude": 133,
+            "latitude": -19,
+            "trips": 649.255
+          },
+          {
+            "state": "ACT",
+            "longitude": 149.1,
+            "latitude": -35.3,
+            "trips": 1019.815
+          }
+        ]
+      },
+
+      "mark": {
+        "type": "circle",
+        "opacity": 0.78,
+        "color": "#4F7C91",
+        "stroke": "#FFFFFF",
+        "strokeWidth": 1
+      },
+
+      "encoding": {
+
+        "longitude": {
+          "field": "longitude",
+          "type": "quantitative"
+        },
+
+        "latitude": {
+          "field": "latitude",
+          "type": "quantitative"
+        },
+
+        "size": {
+          "field": "trips",
+          "type": "quantitative",
+          "title": "Domestic Trips ('000)",
+
+          "scale": {
+            "range": [
+              100,
+              2600
+            ]
+          }
+        },
+
+        "tooltip": [
+          {
+            "field": "state",
+            "type": "nominal",
+            "title": "State"
+          },
+          {
+            "field": "trips",
+            "type": "quantitative",
+            "title": "Domestic Trips ('000)",
+            "format": ",.0f"
+          }
+        ]
+      }
+    }
+
+  ],
+
+  "config": {
+
+    "background": "#FFFFFF",
+
+    "view": {
+      "stroke": null
+    },
+
+    "legend": {
+      "labelFontSize": 11,
+      "titleFontSize": 12
+    }
+  }
+}

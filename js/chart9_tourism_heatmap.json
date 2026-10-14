@@ -1,0 +1,175 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+
+  "width": 620,
+  "height": 330,
+
+  "data": {
+    "url": "data/australia_tourism_2026.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "total_domestic_trips_000": "number",
+        "visitor_nights_000": "number",
+        "regional_expenditure_m_aud": "number"
+      }
+    }
+  },
+
+  "transform": [
+    {
+      "joinaggregate": [
+        {
+          "op": "max",
+          "field": "total_domestic_trips_000",
+          "as": "max_trips"
+        },
+        {
+          "op": "max",
+          "field": "visitor_nights_000",
+          "as": "max_nights"
+        },
+        {
+          "op": "max",
+          "field": "regional_expenditure_m_aud",
+          "as": "max_spending"
+        }
+      ]
+    },
+
+    {
+      "calculate": "datum.total_domestic_trips_000 / datum.max_trips",
+      "as": "Trips"
+    },
+
+    {
+      "calculate": "datum.visitor_nights_000 / datum.max_nights",
+      "as": "Visitor Nights"
+    },
+
+    {
+      "calculate": "datum.regional_expenditure_m_aud / datum.max_spending",
+      "as": "Tourism Spending"
+    },
+
+    {
+      "fold": [
+        "Trips",
+        "Visitor Nights",
+        "Tourism Spending"
+      ],
+      "as": [
+        "metric",
+        "relative_value"
+      ]
+    }
+  ],
+
+  "mark": {
+    "type": "rect",
+    "cornerRadius": 3,
+    "stroke": "#FFFFFF",
+    "strokeWidth": 1.5
+  },
+
+  "encoding": {
+
+    "x": {
+      "field": "metric",
+      "type": "nominal",
+      "title": null,
+      "sort": [
+        "Trips",
+        "Visitor Nights",
+        "Tourism Spending"
+      ],
+      "axis": {
+        "labelAngle": 0,
+        "labelFontSize": 12
+      }
+    },
+
+    "y": {
+      "field": "state",
+      "type": "nominal",
+      "title": null,
+      "sort": [
+        "NSW",
+        "VIC",
+        "QLD",
+        "WA",
+        "SA",
+        "TAS",
+        "NT",
+        "ACT"
+      ],
+      "axis": {
+        "labelFontSize": 12
+      }
+    },
+
+    "color": {
+      "field": "relative_value",
+      "type": "quantitative",
+      "title": "Relative Level",
+      "scale": {
+        "domain": [0, 1],
+        "scheme": "tealblues"
+      }
+    },
+
+    "tooltip": [
+      {
+        "field": "state_name",
+        "type": "nominal",
+        "title": "State"
+      },
+      {
+        "field": "metric",
+        "type": "nominal",
+        "title": "Indicator"
+      },
+      {
+        "field": "relative_value",
+        "type": "quantitative",
+        "title": "Relative Level",
+        "format": ".2f"
+      },
+      {
+        "field": "total_domestic_trips_000",
+        "type": "quantitative",
+        "title": "Domestic Trips ('000)",
+        "format": ",.0f"
+      },
+      {
+        "field": "visitor_nights_000",
+        "type": "quantitative",
+        "title": "Visitor Nights ('000)",
+        "format": ",.0f"
+      },
+      {
+        "field": "regional_expenditure_m_aud",
+        "type": "quantitative",
+        "title": "Expenditure ($M)",
+        "format": ",.0f"
+      }
+    ]
+  },
+
+  "config": {
+    "view": {
+      "stroke": null
+    },
+
+    "axis": {
+      "domain": false,
+      "ticks": false
+    },
+
+    "legend": {
+      "labelFontSize": 11,
+      "titleFontSize": 12,
+      "gradientLength": 180
+    }
+  }
+}

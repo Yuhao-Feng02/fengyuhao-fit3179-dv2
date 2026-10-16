@@ -17,38 +17,74 @@
     }
   ],
 
-  "mark": {
-    "type": "bar",
-    "color": "#3F6E63"
-  },
-
-  "encoding": {
-    "y": {
-      "field": "state",
-      "type": "nominal",
-      "title": null,
-      "sort": "-x"
-    },
-
-    "x": {
-      "aggregate": "count",
-      "type": "quantitative",
-      "title": "Number of Recorded Lookouts"
-    },
-
-    "tooltip": [
-      {
-        "field": "state",
-        "type": "nominal",
-        "title": "State"
+  "layer": [
+    {
+      "mark": {
+        "type": "bar",
+        "color": "#3F6E63"
       },
-      {
-        "aggregate": "count",
-        "type": "quantitative",
-        "title": "Recorded Lookouts"
+
+      "encoding": {
+        "y": {
+          "field": "state",
+          "type": "nominal",
+          "title": null,
+          "sort": "-x"
+        },
+
+        "x": {
+          "aggregate": "count",
+          "type": "quantitative",
+          "title": "Number of Recorded Lookouts"
+        },
+
+        "tooltip": [
+          {
+            "field": "state",
+            "type": "nominal",
+            "title": "State"
+          },
+          {
+            "aggregate": "count",
+            "type": "quantitative",
+            "title": "Recorded Lookouts"
+          }
+        ]
       }
-    ]
-  },
+    },
+
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 6,
+        "fontSize": 12,
+        "fontWeight": 600,
+        "color": "#18312D"
+      },
+
+      "encoding": {
+        "y": {
+          "field": "state",
+          "type": "nominal",
+          "title": null,
+          "sort": "-x"
+        },
+
+        "x": {
+          "aggregate": "count",
+          "type": "quantitative"
+        },
+
+        "text": {
+          "aggregate": "count",
+          "type": "quantitative",
+          "format": ",.0f"
+        }
+      }
+    }
+  ],
 
   "config": {
     "view": {

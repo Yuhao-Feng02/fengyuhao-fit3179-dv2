@@ -27,7 +27,6 @@
   },
 
   "encoding": {
-
     "x": {
       "field": "distance_km",
       "type": "quantitative",
@@ -55,12 +54,11 @@
 
       "scale": {
         "domain": [1, 2, 3, 4, 5],
-        "scheme": "viridis"
+        "scheme": "tableau10"
       }
     },
 
     "tooltip": [
-
       {
         "field": "name",
         "type": "nominal",
@@ -96,12 +94,10 @@
         "type": "ordinal",
         "title": "Grade"
       }
-
     ]
   },
 
   "config": {
-
     "view": {
       "stroke": null
     },

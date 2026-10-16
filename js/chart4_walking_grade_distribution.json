@@ -2,7 +2,7 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
 
   "width": 700,
-  "height": 350,
+  "height": 430,
 
   "data": {
     "url": "data/nsw_scenic_lookout_walks_case_study.csv",
@@ -15,10 +15,16 @@
     }
   },
 
+  "transform": [
+    {
+      "filter": "datum.grade >= 1 && datum.grade <= 4"
+    }
+  ],
+
   "mark": {
     "type": "boxplot",
     "extent": "min-max",
-    "size": 55
+    "size": 65
   },
 
   "encoding": {
@@ -28,7 +34,8 @@
       "title": "Walking Track Grade",
       "sort": "ascending",
       "axis": {
-        "labelAngle": 0
+        "labelAngle": 0,
+        "labelFontSize": 13
       }
     },
 
@@ -37,7 +44,12 @@
       "type": "quantitative",
       "title": "Typical Walking Time (minutes)",
       "scale": {
+        "domain": [0, 120],
         "zero": true
+      },
+      "axis": {
+        "labelFontSize": 13,
+        "titleFontSize": 14
       }
     },
 
@@ -55,6 +67,11 @@
         "field": "grade",
         "type": "ordinal",
         "title": "Grade"
+      },
+      {
+        "field": "time_mid_min",
+        "type": "quantitative",
+        "title": "Walking time (min)"
       }
     ]
   },
